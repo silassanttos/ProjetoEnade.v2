@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relQuestoes" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d37dd5e8-6aa6-402c-8ba3-53a6cfd63aa4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.callouts" value="##Tue Nov 09 22:02:40 BRST 2021"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="822239ee-272b-47c9-925e-ecb5353370fa"/>
+	<parameter name="nome_disciplina" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dificuldade" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nome_curso" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano2" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT A.COD_QUESTAO, A.ANO, C.NOME_CURSO,B.NOME_DISCIPLINA,A.N_QUESTAO,A.DIFICULDADE,A.ENUNCIADO,A.DESCRICAO,A.A,A.B,A.C,A.D,A.E,A.ALTERNATIVA_CORRETA from questoes A LEFT JOIN disciplina B ON A.COD_DISCIPLINAFK =  B.COD_DISCIPLINA LEFT JOIN CURSO C ON A.COD_CURSOFK =  C.COD_CURSO
+where B.NOME_DISCIPLINA like  '%$P!{nome_disciplina}%'
+AND C.NOME_CURSO like '%$P!{nome_curso}%'
+AND A.ANO between $P{ano} AND  $P{ano2}
+AND A.DIFICULDADE like '%$P!{dificuldade}%']]>
+	</queryString>
+	<field name="COD_QUESTAO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ANO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOME_CURSO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOME_DISCIPLINA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="N_QUESTAO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DIFICULDADE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ENUNCIADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCRICAO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="A" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="B" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="C" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="D" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="E" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ALTERNATIVA_CORRETA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="COD_QUESTAO_1" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{COD_QUESTAO}]]></variableExpression>
+	</variable>
+	<variable name="COD_QUESTAO_2" class="java.lang.Integer" resetType="Page" calculation="StandardDeviation">
+		<variableExpression><![CDATA[$F{COD_QUESTAO}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="88" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="162" y="0" width="267" height="64" backcolor="#FFCC00" uuid="06e7a6f3-99ec-455d-83e7-35cb193e0fa0"/>
+				<textElement>
+					<font fontName="Serif" size="26"/>
+				</textElement>
+				<text><![CDATA[Relatório de questões]]></text>
+			</staticText>
+			<image>
+				<reportElement x="4" y="-34" width="132" height="118" uuid="51f3683e-74fb-46e0-baa3-20e74a2e471e"/>
+				<imageExpression><![CDATA["D:\\4º SEMESTRE\\Análise e Projeto de Sistemas II - C_ (Not) _TAT_UNICID\\Projeto ENADE\\logo.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="455" y="0" width="100" height="20" uuid="323222e2-05cf-4261-98c9-87e245b2ac51"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Prevent">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="9b5d83fd-3ae2-414d-9466-8d967ceea9af"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="3" width="46" height="20" uuid="05a9333c-e2f9-433f-b68e-15efc2ed7a48"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="3" width="43" height="20" uuid="40e505ff-3288-4bf6-b1d6-6a84e52481fd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ANO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="93" y="3" width="128" height="20" uuid="b6bd5eef-b7d6-44ff-af19-84a070751237"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CURSO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="3" width="64" height="20" uuid="6adb929d-4c24-418a-b21f-50674cbe7910"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº QUESTÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="3" width="125" height="20" uuid="39a35799-02fa-4450-b374-125064c4f30f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DISCIPLINA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="424" y="3" width="100" height="20" uuid="bfd78798-5a47-4db8-be6f-d51f37ba13d2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIFICULDADE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="0" width="46" height="20" uuid="16847621-7c06-4371-a71a-0a4d04b5d47f"/>
+				<textFieldExpression><![CDATA[$F{COD_QUESTAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="0" width="43" height="20" uuid="e4948a9b-773f-4781-98fe-310b133cc2b9"/>
+				<textFieldExpression><![CDATA[$F{ANO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="93" y="0" width="128" height="20" uuid="4db49068-2a0f-4872-bd78-f46f68ee533d"/>
+				<textFieldExpression><![CDATA[$F{NOME_CURSO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="3" width="64" height="20" uuid="61319137-e2ec-4c70-8a58-717c0d10f5e8"/>
+				<textFieldExpression><![CDATA[$F{N_QUESTAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="0" width="125" height="20" uuid="eea0b7f6-729b-4f4c-a161-440d1651dd11"/>
+				<textFieldExpression><![CDATA[$F{NOME_DISCIPLINA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="424" y="3" width="100" height="20" uuid="f737624e-bdec-46ca-9a31-bc535f89e46c"/>
+				<textFieldExpression><![CDATA[$F{DIFICULDADE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="3" y="0" width="552" height="1" forecolor="#FFCC00" uuid="88020735-0be0-4ac4-a469-d17fa3cfbdfe"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="2" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="454" y="9" width="70" height="20" uuid="19873a3d-0831-411f-8271-059069119bcd"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="524" y="9" width="31" height="20" uuid="68e01cf6-81a3-4ff7-a93a-218f97dc918c"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
